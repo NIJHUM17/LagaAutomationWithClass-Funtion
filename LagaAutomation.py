@@ -14,7 +14,7 @@ class LagaAutomation:
         print(self.driver.title)
         time.sleep(3)
 
-''' 
+
     def Reg(self):
         self.driver.find_element("xpath", "//a[@class='login']").click()
 
@@ -53,9 +53,32 @@ class LagaAutomation:
         self.driver.find_element("id", "alias").send_keys(address)
 
         self.driver.find_element("xpath", "//button[@id='submitAccount']").click()
-        '''
 
-    def login(self):
+    '''
+    def login(self,emailid):
+        self.driver.find_element("id", "email").send_keys(emailid)
+        time.sleep(2)
+        self.driver.find_element("id", "passwd").send_keys("123Nipu")
+        time.sleep(2)
+        self.driver.find_element("xpath", "//button[@id='SubmitLogin']").click()'''
+
+    def search(self, searching):
+        self.driver.find_element("id", "search_query_top").send_keys(searching)
+        time.sleep(2)
+        self.driver.find_element("xpath", "//button[@name='submit_search']").click()
+        time.sleep(10)
+
+    # Add
+    def add(self):
+        self.driver.find_element("xpath", "//a[@class = 'product-name']").click()
+        time.sleep(10)
+        self.driver.find_element("xpath", "//button[@class ='exclusive']").click()
+        time.sleep(10)
+
+    # proceed to checkout
+    def proceed_to_checkout(self):
+        self.driver.find_element("xpath", "//a[@class = 'btn btn-default button button-medium']").click()
+        time.sleep(10)
 
 lagaWebsite = LagaAutomation()
 lagaWebsite.setup()
@@ -65,6 +88,10 @@ lagaWebsite.email("tahsinanijum5199@gmail.com")
 lagaWebsite.name("Tahsin", "Nijhum", "123Nipu*")
 lagaWebsite.dob(5,"January", 2000)
 lagaWebsite.personal_info("Tahsin Adiba", "Nijhum", "Red.Dot", "Downey", "Dominant Dream", "South Gate", "California", "90280", "Information will be added later if needed" ,"+12022563030", "+8801629099448")
+#lagaWebsite.login("tahsinanijum5199@gmail.com")
+lagaWebsite.search("Dress")
+lagaWebsite.add()
+lagaWebsite.proceed_to_checkout()
 
 
 
